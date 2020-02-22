@@ -1,11 +1,16 @@
-class Player
-  attr_accessor :name, :hand, :bank, :points, :rangs
+require_relative 'validator'
 
+class Player
+  include Validator
+
+  attr_accessor :name, :hand, :bank, :points, :rangs
+  NAME_FORMAT = /^[a-zа-я]{5}/i
   @@players = []
 
   def initialize(name)
     @name = name.to_s
     @bank = 100
+    validate!
     @hand = []
     @rangs = []
     @points = 0
@@ -71,5 +76,11 @@ class Player
   def clear_hand
     self.hand.clear
     self.points = 0
+  end
+
+  private
+
+  def validate!
+    raise "Wrong Name!(String contains < 5 symbols)" if name !~ NAME_FORMAT
   end
 end

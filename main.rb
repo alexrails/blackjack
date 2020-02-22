@@ -1,3 +1,4 @@
+require_relative 'validator'
 require_relative 'deck'
 require_relative 'player'
 
