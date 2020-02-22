@@ -13,4 +13,8 @@ class Deck
       end
     end
   end
+
+  def shuffle_deck
+    self.current_deck.shuffle!
+  end
 end
