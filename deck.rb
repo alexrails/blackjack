@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'validator'
 
 class Deck
@@ -8,8 +10,8 @@ class Deck
 
   def initialize(amount)
     @amount = amount.to_i
-    @card_rang = [ 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A" ]
-    @card_suit = [ "♢", "♣", "♡", "♠" ]
+    @card_rang = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+    @card_suit = ['♢', '♣', '♡', '♠']
     @current_deck = []
     @card_rang.each do |rang|
       amount.times do
@@ -22,12 +24,12 @@ class Deck
   end
 
   def shuffle_deck
-    self.current_deck.shuffle!
+    current_deck.shuffle!
   end
 
   private
 
   def validate!
-    raise "Too much amount(>10)!" if amount > 10
+    raise 'Too much amount(>10)!' if amount > 10
   end
 end

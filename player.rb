@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'validator'
 
 class Player
   include Validator
 
   attr_accessor :name, :hand, :bank, :points, :rangs
-  NAME_FORMAT = /^[a-zа-я]{5}/i
+  NAME_FORMAT = /^[a-zа-я]{5}/i.freeze
   @@players = []
 
   def initialize(name)
@@ -27,38 +29,38 @@ class Player
   end
 
   def print_hand
-    print "#{self.name}'s hand - "
-    self.hand.each do |card|
+    print "#{name}'s hand - "
+    hand.each do |card|
       card.each do |item|
-        print "#{item}"
+        print item.to_s
       end
-      print " "
+      print ' '
     end
-    return nil
+    nil
   end
 
   def count_points
     case rangs.last
-      when 2..10
-        self.points += rangs.last
-      when "J", "Q", "K"
-        self.points += 10
-      when "A"
-        if self.points + 11 <= 21
-          self.points += 11
-        else
-          self.points += 1
-      end
+    when 2..10
+      self.points += rangs.last
+    when 'J', 'Q', 'K'
+      self.points += 10
+    when 'A'
+      self.points += if self.points + 11 <= 21
+                       11
+                     else
+                       1
+                     end
     end
     self.points
   end
 
   def info
-    puts "----------------------------------------------"
-    puts "#{self.print_hand}"
-    puts "#{self.name} have #{self.points} points"
-    puts "#{self.name}'s bank is #{self.bank} dollars"
-    puts "----------------------------------------------"
+    puts '----------------------------------------------'
+    puts print_hand.to_s
+    puts "#{name} have #{self.points} points"
+    puts "#{name}'s bank is #{bank} dollars"
+    puts '----------------------------------------------'
   end
 
   def fail?
@@ -67,20 +69,20 @@ class Player
 
   def secure_hand
     print "Dealer's hand "
-    self.hand.size.times do
-      print "*"
+    hand.size.times do
+      print '*'
     end
     print "\n"
   end
 
   def clear_hand
-    self.hand.clear
+    hand.clear
     self.points = 0
   end
 
   private
 
   def validate!
-    raise "Wrong Name!(String contains < 5 symbols)" if name !~ NAME_FORMAT
+    raise 'Wrong Name!(String contains < 5 symbols)' if name !~ NAME_FORMAT
   end
 end
