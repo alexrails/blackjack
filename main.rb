@@ -3,12 +3,12 @@ require_relative 'player'
 
 class Gameplay
   attr_accessor :user, :dealer, :deck
-  RATE = 20
   MENU = "
     1 - Pass
     2 - Add card
     3 - Open the hand
   "
+  RATE = 20
   @@round_number = 0
 
   def initialize
@@ -22,10 +22,14 @@ class Gameplay
     @deck = Deck.new(amount)
   end
 
+  def round
+    user.bank -= RATE/2
+    dealer.bank -= RATE/2
+  end
+
   def first_round
     deck.shuffle_deck
-    user.round
-    dealer.round
+    round
     user.get_cards(2, deck)
     dealer.get_cards(2, deck)
     user.info
@@ -34,6 +38,10 @@ class Gameplay
 
   def menu
     @@round_number += 1
+    if @@round_number > 1
+      puts "Do You want to continue?(yes/no)"
+      exit if gets.chomp.downcase == "no"
+    end
     puts "ROUND №#{@@round_number}"
     puts "Do you want shuffle the deck?(yes/no)"
     if gets.chomp.downcase == "yes"
@@ -50,7 +58,6 @@ class Gameplay
         users_turn
         user.info
         dealers_turn
-        dealer.secure_hand
       when 3
         open_cards
         break
@@ -76,6 +83,7 @@ class Gameplay
     else
       "Pass"
     end
+    dealer.secure_hand
   end
 
   def users_turn
@@ -84,6 +92,7 @@ class Gameplay
   end
 
   def open_cards
+    puts "======================="
     puts "OPEN CARDS!"
     result
     dealer.info

@@ -2,7 +2,6 @@ class Player
   attr_accessor :name, :hand, :bank, :points, :rangs
 
   @@players = []
-  RATE = 20
 
   def initialize(name)
     @name = name.to_s
@@ -22,10 +21,6 @@ class Player
     end
   end
 
-  def round
-    self.bank -= RATE/2
-  end
-
   def print_hand
     print "#{self.name}'s hand - "
     self.hand.each do |card|
@@ -34,6 +29,7 @@ class Player
       end
       print " "
     end
+    return nil
   end
 
   def count_points
