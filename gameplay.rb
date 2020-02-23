@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'interface'
 require_relative 'validator'
 require_relative 'deck'
@@ -21,7 +22,7 @@ class Gameplay
   def controller
     @@round_number += 1
     if @@round_number > 1
-     exit if Interface.ask_to_continue == 'no'
+      exit if Interface.ask_to_continue == 'no'
     end
     Interface.number_of_round(@@round_number)
     deck.shuffle_deck if Interface.ask_shuffled == 'yes'

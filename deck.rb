@@ -8,8 +8,8 @@ class Deck
 
   attr_accessor :amount, :current_deck
   attr_reader :card_rang, :card_suit
-  CARD_RANG = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
-  CARD_SUIT = ['♢', '♣', '♡', '♠']
+  CARD_RANG = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'].freeze
+  CARD_SUIT = ['♢', '♣', '♡', '♠'].freeze
 
   def initialize(amount)
     @amount = amount.to_i

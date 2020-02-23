@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Interface
-module_function
-MENU = "
+  module_function
+
+  MENU = "
     1 - Pass
     2 - Add card
     3 - Open the hand
@@ -50,19 +53,19 @@ MENU = "
   end
 
   def user_draw_round(rate)
-    puts "DRAW! You get #{rate/2} dollars"
+    puts "DRAW! You get #{rate / 2} dollars"
   end
 
   def user_lose
-    puts "SORRY! You LOSE!"
+    puts 'SORRY! You LOSE!'
   end
 
   def user_win_game
-    puts "YOU WINN THIS GAME!"
+    puts 'YOU WINN THIS GAME!'
   end
 
   def user_lose_game
-    puts "GAME OVER!"
+    puts 'GAME OVER!'
   end
 
   def turn_message(user)

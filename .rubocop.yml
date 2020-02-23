@@ -9,7 +9,7 @@ Metrics/ClassLength:
 
 Metrics/AbcSize:
   Exclude:
-   - 'main.rb'
+   - 'gameplay.rb'
 
 Metrics/MethodLength:
   Max: 35
