@@ -36,6 +36,7 @@ class Player
       end
       print ' '
     end
+    print "\n"
     nil
   end
 
@@ -53,14 +54,6 @@ class Player
                      end
     end
     self.points
-  end
-
-  def info
-    puts '----------------------------------------------'
-    puts print_hand.to_s
-    puts "#{name} have #{self.points} points"
-    puts "#{name}'s bank is #{bank} dollars"
-    puts '----------------------------------------------'
   end
 
   def fail?
